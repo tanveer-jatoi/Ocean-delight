@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'oceandelight/seafood-ecommerce',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '7d97ee76a8e65c38d4074ffc6c77e81f96b03d26',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -584,9 +584,9 @@
             'dev_requirement' => false,
         ),
         'oceandelight/seafood-ecommerce' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '7d97ee76a8e65c38d4074ffc6c77e81f96b03d26',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

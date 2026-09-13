@@ -43,10 +43,10 @@
                     <strong>📍 Location:</strong> Fishery Wharf, Dockyard Road, Karachi, Pakistan
                 </p>
                 <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">
-                    <strong>📞 Phone:</strong> +92 300 8282363
+                    <strong>📞 Phone:</strong> +92 3040313435
                 </p>
                 <p style="font-size: 0.875rem; margin-bottom: 0.5rem;">
-                    <strong>✉ Email:</strong> orders@oceandelight.pk
+                    <strong>✉ Email:</strong> [Oceandelight.com.pk]
                 </p>
                 <p style="font-size: 0.875rem; color: var(--color-sand-accent); margin-top: 1rem;">
                     <strong>Areas Covered:</strong> DHA, Clifton, Gulshan, PECHS, North Nazimabad, Saddar, Bahria Town & all Karachi localities.

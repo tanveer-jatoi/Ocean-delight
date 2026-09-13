@@ -61,6 +61,24 @@
     </div>
 </section>
 
+<!-- Recent Catch Section -->
+<section style="padding: 4rem 0;">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">New Daily Arrivals</h2>
+                <p class="section-subtitle">Latest catch added to our Karachi inventory today</p>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            @foreach($recentCatch as $product)
+                @include('components.product-card', ['product' => $product])
+            @endforeach
+        </div>
+    </div>
+</section>
+
 <!-- The Ocean Delight Standard -->
 <section class="features-section">
     <div class="container">
@@ -102,24 +120,6 @@
                 <h3 class="feature-title">Sustainable Sourcing</h3>
                 <p class="feature-desc">Committed to responsible fishing practices that protect Arabian sea marine ecosystems for the future.</p>
             </div>
-        </div>
-    </div>
-</section>
-
-<!-- Recent Catch Section -->
-<section style="padding: 4rem 0;">
-    <div class="container">
-        <div class="section-header">
-            <div>
-                <h2 class="section-title">New Daily Arrivals</h2>
-                <p class="section-subtitle">Latest catch added to our Karachi inventory today</p>
-            </div>
-        </div>
-
-        <div class="product-grid">
-            @foreach($recentCatch as $product)
-                @include('components.product-card', ['product' => $product])
-            @endforeach
         </div>
     </div>
 </section>

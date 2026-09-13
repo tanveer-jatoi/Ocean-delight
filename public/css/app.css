@@ -8,7 +8,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 :root {
-    /* Color Palette */
     --color-ocean-dark: #0B192C;
     --color-ocean-navy: #1E3E62;
     --color-ocean-blue: #008DDA;
@@ -31,11 +30,9 @@
     --color-warning: #F59E0B;
     --color-danger: #EF4444;
 
-    /* Typography */
     --font-heading: 'Playfair Display', Georgia, serif;
     --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 
-    /* Radius & Shadow */
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 16px;
@@ -48,7 +45,6 @@
     --transition-fast: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Reset & Base */
 *,
 *::before,
 *::after {
@@ -89,7 +85,6 @@ img {
     display: block;
 }
 
-/* Container */
 .container {
     width: 100%;
     max-width: 1240px;
@@ -99,7 +94,6 @@ img {
     padding-right: 1rem;
 }
 
-/* Top Announcement Bar */
 .top-bar {
     background-color: var(--color-ocean-dark);
     color: var(--color-sand-light);
@@ -128,7 +122,6 @@ img {
     flex-shrink: 0;
 }
 
-/* Top bar mobile fix: shrink text, keep single line, no ugly wrap */
 @media (max-width: 480px) {
     .top-bar {
         font-size: 0.7rem;
@@ -151,7 +144,6 @@ img {
     }
 }
 
-/* Header & Navigation */
 .site-header {
     background-color: var(--color-bg-card);
     border-bottom: 1px solid var(--color-border);
@@ -271,7 +263,6 @@ img {
     z-index: 210;
 }
 
-/* Animated hamburger -> X icon (3 bars via pseudo-elements + a span) */
 .mobile-nav-toggle .bar,
 .mobile-nav-toggle .bar::before,
 .mobile-nav-toggle .bar::after {
@@ -319,11 +310,6 @@ img {
     transform: rotate(-45deg);
 }
 
-/* ---------------------------------------------------- */
-/* RESPONSIVE NAVBAR FIX (professional slide-in panel)   */
-/* Below 991px: hamburger opens a right-side drawer with */
-/* dark overlay behind it, matching the site's palette.  */
-/* ---------------------------------------------------- */
 .nav-overlay {
     display: none;
     position: fixed;
@@ -343,6 +329,10 @@ img {
     .mobile-nav-toggle {
         display: inline-flex;
         order: 3;
+    }
+
+    .nav-account-actions {
+        display: none;
     }
 
     .nav-actions {
@@ -376,11 +366,19 @@ img {
         transform: translateX(0);
     }
 
+    .nav-menu li {
+        list-style: none;
+        margin: 0;
+        width: 100%;
+    }
+
     .nav-menu .nav-link {
+        display: block;
         width: 100%;
         padding: 1rem 1.5rem;
         border-bottom: 1px solid var(--color-border);
         font-size: 1rem;
+        box-sizing: border-box;
     }
 
     .nav-menu .nav-link:last-child {
@@ -416,7 +414,6 @@ img {
     }
 }
 
-/* Hero Section */
 .hero-section {
     position: relative;
     background-color: var(--color-ocean-dark);
@@ -474,7 +471,6 @@ img {
     flex-wrap: wrap;
 }
 
-/* Buttons */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -530,7 +526,6 @@ img {
     width: 100%;
 }
 
-/* Pill Search & Filter Bar */
 .filter-search-bar {
     background-color: white;
     border-radius: var(--radius-lg);
@@ -599,7 +594,6 @@ img {
     border-color: var(--color-ocean-blue);
 }
 
-/* SECTION TITLE */
 .section-header {
     margin-bottom: 2rem;
     display: flex;
@@ -620,16 +614,11 @@ img {
     margin-top: 0.25rem;
 }
 
-/* ---------------------------------------------------- */
-/* STRICT RESPONSIVE GRID SPECIFICATION (REQUIREMENT #7) */
-/* Desktop: 4 cols | Tablet: 3 cols | Mobile: 3 cols    */
-/* ---------------------------------------------------- */
 .product-grid {
     display: grid;
     gap: 0.75rem;
 }
 
-/* Desktop default >= 1024px: 4 columns */
 @media (min-width: 1024px) {
     .product-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -637,7 +626,6 @@ img {
     }
 }
 
-/* Tablet (768px - 1023px): 3 columns */
 @media (min-width: 768px) and (max-width: 1023px) {
     .product-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -645,7 +633,6 @@ img {
     }
 }
 
-/* Mobile (< 768px): STRICT REQUIREMENT - 3 COLUMNS PER ROW */
 @media (max-width: 767px) {
     .product-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
@@ -653,7 +640,6 @@ img {
     }
 }
 
-/* PRODUCT CARD STYLING */
 .product-card {
     background-color: var(--color-bg-card);
     border: 1px solid var(--color-border);
@@ -771,7 +757,6 @@ img {
     color: white;
 }
 
-/* Adjustments specifically for ultra-compact mobile 3-col card */
 @media (max-width: 767px) {
     .product-card-body {
         padding: 0.4rem;
@@ -795,7 +780,6 @@ img {
     }
 }
 
-/* THE OCEAN DELIGHT STANDARD FEATURES */
 .features-section {
     background-color: white;
     padding: 4rem 0;
@@ -838,7 +822,6 @@ img {
     color: var(--color-text-muted);
 }
 
-/* PRODUCT DETAIL PAGE */
 .product-detail-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -929,7 +912,6 @@ img {
     font-weight: 600;
 }
 
-/* CART & CHECKOUT TABLES */
 .cart-table {
     width: 100%;
     border-collapse: collapse;
@@ -972,7 +954,6 @@ img {
     box-shadow: var(--shadow-sm);
 }
 
-/* FORMS */
 .form-group {
     margin-bottom: 1.25rem;
 }
@@ -1000,7 +981,6 @@ img {
     box-shadow: 0 0 0 3px rgba(0, 141, 218, 0.15);
 }
 
-/* BADGES */
 .badge-pending {
     background: #FEF3C7;
     color: #92400E;
@@ -1031,7 +1011,6 @@ img {
     color: #991B1B;
 }
 
-/* ALERTS */
 .alert {
     padding: 1rem 1.25rem;
     border-radius: var(--radius-sm);
@@ -1066,7 +1045,6 @@ img {
     border: 1px solid #BAE6FD;
 }
 
-/* FOOTER */
 .site-footer {
     background-color: var(--color-ocean-dark);
     color: var(--color-text-light);
@@ -1120,7 +1098,6 @@ img {
     font-size: 0.85rem;
 }
 
-/* ADMIN PANEL STYLES */
 .admin-layout {
     display: flex;
     min-height: 100vh;
@@ -1152,4 +1129,28 @@ img {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--color-ocean-dark);
+}
+
+nav[role="navigation"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+}
+
+nav[role="navigation"] svg {
+    width: 18px !important;
+    height: 18px !important;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+nav[role="navigation"] a,
+nav[role="navigation"] span {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.875rem;
+    display: inline-flex;
+    align-items: center;
 }

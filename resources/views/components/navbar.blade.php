@@ -15,6 +15,17 @@
                 <li><a href="{{ route('products.index') }}" class="nav-link {{ request()->routeIs('products.*') ? 'active' : '' }}">Seafood</a></li>
                 <li><a href="{{ route('about') }}" class="nav-link {{ request()->routeIs('about') ? 'active' : '' }}">About</a></li>
                 <li><a href="{{ route('contact') }}" class="nav-link {{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+
+                @auth
+                    <li class="nav-mobile-only">
+                        <a href="{{ route('account.index') }}" class="nav-link">Account ({{ Str::limit(auth()->user()->name, 10) }})</a>
+                    </li>
+                    @if(auth()->user()->isAdmin())
+                        <li class="nav-mobile-only">
+                            <a href="{{ route('admin.dashboard') }}" class="nav-link">Admin</a>
+                        </li>
+                    @endif
+                @endauth
             </ul>
 
             <div class="nav-actions">
@@ -30,19 +41,16 @@
                 </a>
 
                 @auth
-                    <div style="position: relative;">
+                    <div class="nav-account-actions">
                         <a href="{{ route('account.index') }}" class="btn btn-sm btn-ocean">
                             Account ({{ Str::limit(auth()->user()->name, 10) }})
                         </a>
                         @if(auth()->user()->isAdmin())
-                            <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-sand" style="margin-left: 0.25rem;">
+                            <a href="{{ route('admin.dashboard') }}" class="btn btn-sm btn-sand">
                                 Admin
                             </a>
                         @endif
                     </div>
-                @else
-                    <a href="{{ route('login') }}" class="btn btn-sm btn-outline-white" style="color: var(--color-ocean-dark); border-color: var(--color-border);">Login</a>
-                    <a href="{{ route('register') }}" class="btn btn-sm btn-ocean">Register</a>
                 @endauth
 
                 <button class="mobile-nav-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">

@@ -1,7 +1,7 @@
 <div class="product-card">
     <div class="product-img-wrapper">
         <a href="<?php echo e(route('products.show', $product->slug)); ?>">
-            <img src="<?php echo e(asset($product->image ? $product->image : 'images/products/default.jpg')); ?>" alt="<?php echo e($product->name); ?>" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/1E3E62/FFFFFF?text=Ocean+Delight';">
+            <img src="<?php echo e($product->image_url); ?>" alt="<?php echo e($product->name); ?>" loading="lazy" onerror="this.src='<?php echo e(asset('images/products/default.jpg')); ?>';">
         </a>
         <?php if($product->is_featured): ?>
             <span class="product-badge-featured">Featured</span>
@@ -14,6 +14,10 @@
         <h3 class="product-title">
             <a href="<?php echo e(route('products.show', $product->slug)); ?>"><?php echo e($product->name); ?></a>
         </h3>
+
+        <?php if($product->short_description): ?>
+            <p class="product-card-desc"><?php echo e(Str::limit($product->short_description, 85)); ?></p>
+        <?php endif; ?>
         
         <div class="product-unit"><?php echo e($product->weight_unit); ?></div>
 

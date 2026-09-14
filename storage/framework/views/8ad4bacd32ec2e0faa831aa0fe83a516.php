@@ -1,3 +1,5 @@
+
+
 <?php $__env->startSection('title', 'Ocean Delight - Fresh Seafood Delivered in Karachi'); ?>
 
 <?php $__env->startSection('content'); ?>
@@ -59,6 +61,24 @@
     </div>
 </section>
 
+<!-- Recent Catch Section -->
+<section style="padding: 4rem 0;">
+    <div class="container">
+        <div class="section-header">
+            <div>
+                <h2 class="section-title">New Daily Arrivals</h2>
+                <p class="section-subtitle">Latest catch added to our Karachi inventory today</p>
+            </div>
+        </div>
+
+        <div class="product-grid">
+            <?php $__currentLoopData = $recentCatch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <?php echo $__env->make('components.product-card', ['product' => $product], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        </div>
+    </div>
+</section>
+
 <!-- The Ocean Delight Standard -->
 <section class="features-section">
     <div class="container">
@@ -104,24 +124,5 @@
     </div>
 </section>
 
-<!-- Recent Catch Section -->
-<section style="padding: 4rem 0;">
-    <div class="container">
-        <div class="section-header">
-            <div>
-                <h2 class="section-title">New Daily Arrivals</h2>
-                <p class="section-subtitle">Latest catch added to our Karachi inventory today</p>
-            </div>
-        </div>
-
-        <div class="product-grid">
-            <?php $__currentLoopData = $recentCatch; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                <?php echo $__env->make('components.product-card', ['product' => $product], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
-            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-        </div>
-    </div>
-</section>
-
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.app', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH C:\xampp\htdocs\Ocean-Delight\resources\views/home.blade.php ENDPATH**/ ?>

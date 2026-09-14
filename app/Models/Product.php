@@ -42,6 +42,20 @@ class Product extends Model
         return 'PKR ' . number_format($this->price, 0);
     }
 
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image) {
+            return asset('images/products/default.jpg');
+        }
+        if (str_starts_with($this->image, 'http://') || str_starts_with($this->image, 'https://')) {
+            return $this->image;
+        }
+        if (str_starts_with($this->image, 'images/')) {
+            return asset($this->image);
+        }
+        return asset('images/' . ltrim($this->image, '/'));
+    }
+
     public function scopeActive($query)
     {
         return $query->where('is_active', true);

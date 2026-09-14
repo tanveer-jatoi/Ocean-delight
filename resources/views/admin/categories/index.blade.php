@@ -1,31 +1,28 @@
 @extends('layouts.admin')
 
 @section('title', 'Categories - Admin Ocean Delight')
+@section('page_title', 'Seafood Categories')
 
 @section('content')
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-    <div>
-        <h1 style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--color-ocean-dark);">
-            Categories Management
-        </h1>
-        <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Manage seafood categories and SEO URL slugs (Fish, Prawns, Shrimp, Crab, Lobster, etc.)
-        </p>
+<div class="admin-card">
+    <div class="admin-card-header">
+        <div>
+            <h3 class="admin-card-title">Seafood Categories</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Manage seafood categories, slugs, and catalog organization</p>
+        </div>
+        <a href="{{ route('admin.categories.create') }}" class="btn btn-sand btn-sm">
+            ➕ Add New Category
+        </a>
     </div>
-    <a href="{{ route('admin.categories.create') }}" class="btn btn-sand">
-        + Add New Category
-    </a>
-</div>
 
-<div class="card-box">
-    <div style="overflow-x: auto;">
-        <table class="cart-table">
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
             <thead>
                 <tr>
                     <th>ID</th>
                     <th>Category Name</th>
-                    <th>Slug URL</th>
+                    <th>URL Slug</th>
                     <th>Products Count</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -35,14 +32,14 @@
                 @foreach($categories as $cat)
                     <tr>
                         <td>#{{ $cat->id }}</td>
-                        <td><strong>{{ $cat->name }}</strong></td>
+                        <td><strong style="color: var(--color-ocean-dark);">{{ $cat->name }}</strong></td>
                         <td><code>/category/{{ $cat->slug }}</code></td>
-                        <td>{{ $cat->products_count }} product(s)</td>
+                        <td><span class="admin-badge info">{{ $cat->products_count }} product(s)</span></td>
                         <td>
                             @if($cat->is_active)
-                                <span class="stock-badge stock-in">Active</span>
+                                <span class="admin-badge success">Active</span>
                             @else
-                                <span class="stock-badge stock-out">Inactive</span>
+                                <span class="admin-badge secondary">Inactive</span>
                             @endif
                         </td>
                         <td>
@@ -51,7 +48,7 @@
                                 <form action="{{ route('admin.categories.destroy', $cat->id) }}" method="POST" onsubmit="return confirm('Delete category {{ $cat->name }}?')">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-sm btn-outline-white" style="color: var(--color-danger); border-color: var(--color-danger);">Delete</button>
+                                    <button type="submit" class="btn btn-sm btn-outline-ocean" style="color: var(--color-danger); border-color: var(--color-danger);">Delete</button>
                                 </form>
                             </div>
                         </td>

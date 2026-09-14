@@ -1,25 +1,22 @@
 @extends('layouts.admin')
 
-@section('title', 'Order Management - Admin Ocean Delight')
+@section('title', 'Orders Management - Admin Ocean Delight')
+@section('page_title', 'Orders Management')
 
 @section('content')
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
-    <div>
-        <h1 style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--color-ocean-dark);">
-            Order Management
-        </h1>
-        <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Filter and update customer order status across Karachi delivery routes
-        </p>
+<div class="admin-card" style="margin-bottom: 1.5rem;">
+    <div class="admin-card-header">
+        <div>
+            <h3 class="admin-card-title">Customer Orders & Deliveries</h3>
+            <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-top: 0.25rem;">Filter and update order status across Karachi delivery zones</p>
+        </div>
     </div>
-</div>
 
-<div class="card-box" style="margin-bottom: 1.5rem;">
-    <form action="{{ route('admin.orders.index') }}" method="GET" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-        <input type="text" name="search" class="form-control" style="width: 250px;" placeholder="Search Order # or Customer..." value="{{ request('search') }}">
+    <form action="{{ route('admin.orders.index') }}" method="GET" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+        <input type="text" name="search" class="form-control" style="max-width: 280px;" placeholder="Search Order # or Customer..." value="{{ request('search') }}">
         
-        <select name="status" class="form-control" style="width: 200px;">
+        <select name="status" class="form-control" style="max-width: 220px;">
             <option value="">All Order Statuses</option>
             <option value="Pending" {{ request('status') == 'Pending' ? 'selected' : '' }}>Pending</option>
             <option value="Confirmed" {{ request('status') == 'Confirmed' ? 'selected' : '' }}>Confirmed</option>
@@ -30,21 +27,21 @@
         </select>
 
         <button type="submit" class="btn btn-ocean btn-sm">Filter</button>
-        <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-white btn-sm" style="color: var(--color-text-muted); border-color: var(--color-border);">Reset</a>
+        <a href="{{ route('admin.orders.index') }}" class="btn btn-outline-ocean btn-sm">Reset</a>
     </form>
 </div>
 
-<div class="card-box">
-    <div style="overflow-x: auto;">
-        <table class="cart-table">
+<div class="admin-card">
+    <div class="admin-table-wrapper">
+        <table class="admin-table">
             <thead>
                 <tr>
                     <th>Order #</th>
                     <th>Customer Name</th>
                     <th>Phone</th>
-                    <th>Karachi Area</th>
+                    <th>Area</th>
                     <th>Total</th>
-                    <th>Payment</th>
+                    <th>Payment Method</th>
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -53,19 +50,22 @@
                 @foreach($orders as $order)
                     <tr>
                         <td><strong style="color: var(--color-ocean-blue);">#{{ $order->order_number }}</strong></td>
-                        <td>{{ $order->customer_name }}</td>
-                        <td>{{ $order->customer_phone }}</td>
-                        <td>{{ $order->delivery_area }}</td>
-                        <td style="font-weight: 700; color: var(--color-ocean-dark);">PKR {{ number_format($order->grand_total, 0) }}</td>
-                        <td>Cash on Delivery</td>
                         <td>
-                            <span class="stock-badge {{ $order->status_badge_class }}">
+                            <div style="font-weight: 600; color: var(--color-ocean-dark);">{{ $order->customer_name }}</div>
+                            <div style="font-size: 0.75rem; color: var(--color-text-muted);">{{ $order->created_at ? $order->created_at->format('M d, Y') : 'Recent' }}</div>
+                        </td>
+                        <td>{{ $order->customer_phone }}</td>
+                        <td><span class="admin-badge secondary">{{ $order->delivery_area }}</span></td>
+                        <td style="font-weight: 700; color: var(--color-ocean-dark);">PKR {{ number_format($order->grand_total, 0) }}</td>
+                        <td><span class="admin-badge info">COD</span></td>
+                        <td>
+                            <span class="admin-badge {{ $order->order_status === 'Delivered' ? 'success' : ($order->order_status === 'Pending' ? 'warning' : ($order->order_status === 'Cancelled' ? 'danger' : 'info')) }}">
                                 {{ $order->order_status }}
                             </span>
                         </td>
                         <td>
-                            <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-sm btn-sand">
-                                View & Update Status
+                            <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-sm btn-ocean">
+                                Details & Status
                             </a>
                         </td>
                     </tr>

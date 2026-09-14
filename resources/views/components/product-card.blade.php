@@ -1,7 +1,7 @@
 <div class="product-card">
     <div class="product-img-wrapper">
         <a href="{{ route('products.show', $product->slug) }}">
-            <img src="{{ asset($product->image ? $product->image : 'images/products/default.jpg') }}" alt="{{ $product->name }}" loading="lazy" onerror="this.src='https://via.placeholder.com/400x300/1E3E62/FFFFFF?text=Ocean+Delight';">
+            <img src="{{ $product->image_url }}" alt="{{ $product->name }}" loading="lazy" onerror="this.src='{{ asset('images/products/default.jpg') }}';">
         </a>
         @if($product->is_featured)
             <span class="product-badge-featured">Featured</span>
@@ -14,6 +14,10 @@
         <h3 class="product-title">
             <a href="{{ route('products.show', $product->slug) }}">{{ $product->name }}</a>
         </h3>
+
+        @if($product->short_description)
+            <p class="product-card-desc">{{ Str::limit($product->short_description, 85) }}</p>
+        @endif
         
         <div class="product-unit">{{ $product->weight_unit }}</div>
 

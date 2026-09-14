@@ -15,6 +15,25 @@
                 <li><a href="<?php echo e(route('products.index')); ?>" class="nav-link <?php echo e(request()->routeIs('products.*') ? 'active' : ''); ?>">Seafood</a></li>
                 <li><a href="<?php echo e(route('about')); ?>" class="nav-link <?php echo e(request()->routeIs('about') ? 'active' : ''); ?>">About</a></li>
                 <li><a href="<?php echo e(route('contact')); ?>" class="nav-link <?php echo e(request()->routeIs('contact') ? 'active' : ''); ?>">Contact</a></li>
+
+                <?php if(auth()->guard()->check()): ?>
+                    <li class="nav-mobile-only">
+                        <a href="<?php echo e(route('account.index')); ?>" class="nav-link">Account (<?php echo e(Str::limit(auth()->user()->name, 10)); ?>)</a>
+                    </li>
+                    <?php if(auth()->user()->isAdmin()): ?>
+                        <li class="nav-mobile-only">
+                            <a href="<?php echo e(route('admin.dashboard')); ?>" class="nav-link">Admin</a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if(auth()->guard()->guest()): ?>
+                    <li class="nav-mobile-only">
+                        <a href="<?php echo e(route('login')); ?>" class="nav-link <?php echo e(request()->routeIs('login') ? 'active' : ''); ?>">Login</a>
+                    </li>
+                    <li class="nav-mobile-only">
+                        <a href="<?php echo e(route('register')); ?>" class="nav-link <?php echo e(request()->routeIs('register') ? 'active' : ''); ?>">Sign Up</a>
+                    </li>
+                <?php endif; ?>
             </ul>
 
             <div class="nav-actions">
@@ -31,19 +50,27 @@
                 </a>
 
                 <?php if(auth()->guard()->check()): ?>
-                    <div style="position: relative;">
+                    <div class="nav-account-actions">
                         <a href="<?php echo e(route('account.index')); ?>" class="btn btn-sm btn-ocean">
                             Account (<?php echo e(Str::limit(auth()->user()->name, 10)); ?>)
                         </a>
                         <?php if(auth()->user()->isAdmin()): ?>
-                            <a href="<?php echo e(route('admin.dashboard')); ?>" class="btn btn-sm btn-sand" style="margin-left: 0.25rem;">
+                            <a href="<?php echo e(route('admin.dashboard')); ?>" class="btn btn-sm btn-sand">
                                 Admin
                             </a>
                         <?php endif; ?>
                     </div>
-                <?php else: ?>
-                    <a href="<?php echo e(route('login')); ?>" class="btn btn-sm btn-outline-white" style="color: var(--color-ocean-dark); border-color: var(--color-border);">Login</a>
-                    <a href="<?php echo e(route('register')); ?>" class="btn btn-sm btn-ocean">Register</a>
+                <?php endif; ?>
+
+                <?php if(auth()->guard()->guest()): ?>
+                    <div class="nav-account-actions">
+                        <a href="<?php echo e(route('login')); ?>" class="btn btn-sm btn-outline-ocean">
+                            Login
+                        </a>
+                        <a href="<?php echo e(route('register')); ?>" class="btn btn-sm btn-ocean">
+                            Sign Up
+                        </a>
+                    </div>
                 <?php endif; ?>
 
                 <button class="mobile-nav-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
@@ -56,5 +83,4 @@
             </div>
         </nav>
     </div>
-</header>
-<?php /**PATH C:\xampp\htdocs\Ocean-Delight\resources\views/components/navbar.blade.php ENDPATH**/ ?>
+</header><?php /**PATH C:\xampp\htdocs\Ocean-Delight\resources\views/components/navbar.blade.php ENDPATH**/ ?>

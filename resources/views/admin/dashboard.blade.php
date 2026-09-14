@@ -1,73 +1,96 @@
 @extends('layouts.admin')
 
 @section('title', 'Admin Dashboard - Ocean Delight')
+@section('page_title', 'Dashboard Overview')
 
 @section('content')
 
-<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
-    <div>
-        <h1 style="font-family: var(--font-heading); font-size: 1.85rem; color: var(--color-ocean-dark);">
-            Administrator Dashboard
-        </h1>
-        <p style="color: var(--color-text-muted); font-size: 0.9rem;">
-            Real-time sales performance and order status tracking for Ocean Delight Karachi
-        </p>
-    </div>
-</div>
-
 <!-- Stat Cards Grid -->
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 2rem;">
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Total Sales</div>
-        <div class="stat-value" style="color: var(--color-ocean-blue);">PKR {{ number_format($totalSales, 0) }}</div>
+<div class="admin-stat-grid">
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper blue">
+            💰
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Total Revenue</div>
+            <div class="admin-stat-val">PKR {{ number_format($totalSales, 0) }}</div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Total Orders</div>
-        <div class="stat-value">{{ $totalOrders }}</div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper purple">
+            📦
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Total Orders</div>
+            <div class="admin-stat-val">{{ $totalOrders }}</div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Pending Orders</div>
-        <div class="stat-value" style="color: var(--color-warning);">{{ $pendingOrders }}</div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper amber">
+            ⏳
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Pending Orders</div>
+            <div class="admin-stat-val" style="color: var(--color-warning);">{{ $pendingOrders }}</div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Delivered Orders</div>
-        <div class="stat-value" style="color: var(--color-success);">{{ $deliveredOrders }}</div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper green">
+            ✅
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Delivered</div>
+            <div class="admin-stat-val" style="color: var(--color-success);">{{ $deliveredOrders }}</div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Total Customers</div>
-        <div class="stat-value">{{ $totalCustomers }}</div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper blue">
+            👥
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Customers</div>
+            <div class="admin-stat-val">{{ $totalCustomers }}</div>
+        </div>
     </div>
-    <div class="stat-card">
-        <div style="font-size: 0.825rem; color: var(--color-text-muted); text-transform: uppercase;">Total Products</div>
-        <div class="stat-value">{{ $totalProducts }}</div>
+
+    <div class="admin-stat-card">
+        <div class="admin-stat-icon-wrapper green">
+            🐟
+        </div>
+        <div class="admin-stat-info">
+            <div class="admin-stat-label">Active Products</div>
+            <div class="admin-stat-val">{{ $totalProducts }}</div>
+        </div>
     </div>
 </div>
 
-<!-- Low Stock Warning Alert if any -->
+<!-- Low Stock Warning Alert -->
 @if($lowStockProducts->count() > 0)
-    <div class="alert alert-warning" style="margin-bottom: 2rem;">
-        <strong>⚠ Low Stock Alert:</strong> {{ $lowStockProducts->count() }} seafood item(s) have 5 kg or less stock remaining (e.g. {{ $lowStockProducts->pluck('name')->take(3)->implode(', ') }}).
+    <div class="alert alert-warning" style="margin-bottom: 1.75rem;">
+        <strong>⚠ Low Stock Warning:</strong> {{ $lowStockProducts->count() }} seafood item(s) have low stock remaining (e.g. {{ $lowStockProducts->pluck('name')->take(3)->implode(', ') }}).
     </div>
 @endif
 
-<div class="checkout-grid">
-    <!-- Recent Orders Table -->
-    <div class="card-box">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-ocean-dark);">
-                Recent Orders
-            </h3>
-            <a href="{{ route('admin.orders.index') }}" style="font-size: 0.85rem; color: var(--color-ocean-blue); font-weight: 600;">View All &rarr;</a>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+    <!-- Recent Orders -->
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h3 class="admin-card-title">Recent Customer Orders</h3>
+            <a href="{{ route('admin.orders.index') }}" class="btn btn-sm btn-ocean">View All Orders &rarr;</a>
         </div>
 
         @if($recentOrders->count() > 0)
-            <div style="overflow-x: auto;">
-                <table class="cart-table">
+            <div class="admin-table-wrapper">
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th>Order #</th>
                             <th>Customer</th>
-                            <th>Total</th>
+                            <th>Amount</th>
                             <th>Status</th>
                             <th>Action</th>
                         </tr>
@@ -76,15 +99,18 @@
                         @foreach($recentOrders as $order)
                             <tr>
                                 <td><strong style="color: var(--color-ocean-blue);">#{{ $order->order_number }}</strong></td>
-                                <td>{{ $order->customer_name }}</td>
-                                <td>PKR {{ number_format($order->grand_total, 0) }}</td>
                                 <td>
-                                    <span class="stock-badge {{ $order->status_badge_class }}">
+                                    <div style="font-weight: 600;">{{ $order->customer_name }}</div>
+                                    <div style="font-size: 0.75rem; color: var(--color-text-muted);">{{ $order->created_at ? $order->created_at->format('M d, H:i') : 'Recently' }}</div>
+                                </td>
+                                <td style="font-weight: 700;">PKR {{ number_format($order->grand_total, 0) }}</td>
+                                <td>
+                                    <span class="admin-badge {{ $order->order_status === 'Delivered' ? 'success' : ($order->order_status === 'Pending' ? 'warning' : 'info') }}">
                                         {{ $order->order_status }}
                                     </span>
                                 </td>
                                 <td>
-                                    <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-sm btn-ocean">Manage</a>
+                                    <a href="{{ route('admin.orders.show', $order->id) }}" class="btn btn-sm btn-outline-ocean">Manage</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -92,32 +118,37 @@
                 </table>
             </div>
         @else
-            <p style="color: var(--color-text-muted); font-size: 0.9rem;">No orders placed yet.</p>
+            <p style="color: var(--color-text-muted); font-size: 0.9rem; padding: 1rem 0;">No recent orders placed.</p>
         @endif
     </div>
 
-    <!-- Recent Customers & Quick Actions -->
-    <div>
-        <div class="card-box" style="margin-bottom: 1.5rem;">
-            <h3 style="font-family: var(--font-heading); font-size: 1.2rem; color: var(--color-ocean-dark); margin-bottom: 1rem;">
-                Recent Customers
-            </h3>
-            @if($recentCustomers->count() > 0)
-                <div style="display: flex; flex-direction: column; gap: 0.75rem;">
-                    @foreach($recentCustomers as $customer)
-                        <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">
+    <!-- Recent Registered Customers -->
+    <div class="admin-card">
+        <div class="admin-card-header">
+            <h3 class="admin-card-title">New Customer Registrations</h3>
+            <a href="{{ route('admin.customers.index') }}" style="font-size: 0.85rem; color: var(--color-ocean-blue); font-weight: 600;">View Customers &rarr;</a>
+        </div>
+
+        @if($recentCustomers->count() > 0)
+            <div style="display: flex; flex-direction: column; gap: 0.85rem;">
+                @foreach($recentCustomers as $customer)
+                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 0.75rem; border-radius: var(--radius-md); background-color: #F8FAFC; border: 1px solid #F1F5F9;">
+                        <div style="display: flex; align-items: center; gap: 0.75rem;">
+                            <div style="width: 38px; height: 38px; border-radius: 50%; background-color: var(--color-ocean-ice); color: var(--color-ocean-blue); display: flex; align-items: center; justify-content: center; font-weight: 700;">
+                                {{ strtoupper(substr($customer->name, 0, 1)) }}
+                            </div>
                             <div>
                                 <strong style="font-size: 0.9rem; color: var(--color-ocean-dark);">{{ $customer->name }}</strong>
                                 <div style="font-size: 0.75rem; color: var(--color-text-muted);">{{ $customer->email }}</div>
                             </div>
-                            <span style="font-size: 0.75rem; color: var(--color-text-muted);">{{ $customer->area }}</span>
                         </div>
-                    @endforeach
-                </div>
-            @else
-                <p style="color: var(--color-text-muted); font-size: 0.9rem;">No registered customers yet.</p>
-            @endif
-        </div>
+                        <span class="admin-badge secondary">{{ $customer->area ?? 'Karachi' }}</span>
+                    </div>
+                @endforeach
+            </div>
+        @else
+            <p style="color: var(--color-text-muted); font-size: 0.9rem; padding: 1rem 0;">No registered customers yet.</p>
+        @endif
     </div>
 </div>
 

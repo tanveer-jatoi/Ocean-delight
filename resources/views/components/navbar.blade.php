@@ -26,6 +26,14 @@
                         </li>
                     @endif
                 @endauth
+                @guest
+                    <li class="nav-mobile-only">
+                        <a href="{{ route('login') }}" class="nav-link {{ request()->routeIs('login') ? 'active' : '' }}">Login</a>
+                    </li>
+                    <li class="nav-mobile-only">
+                        <a href="{{ route('register') }}" class="nav-link {{ request()->routeIs('register') ? 'active' : '' }}">Sign Up</a>
+                    </li>
+                @endguest
             </ul>
 
             <div class="nav-actions">
@@ -52,6 +60,17 @@
                         @endif
                     </div>
                 @endauth
+
+                @guest
+                    <div class="nav-account-actions">
+                        <a href="{{ route('login') }}" class="btn btn-sm btn-outline-ocean">
+                            Login
+                        </a>
+                        <a href="{{ route('register') }}" class="btn btn-sm btn-ocean">
+                            Sign Up
+                        </a>
+                    </div>
+                @endguest
 
                 <button class="mobile-nav-toggle" id="mobileMenuToggle" aria-label="Toggle Menu">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">

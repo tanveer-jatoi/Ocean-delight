@@ -5,4 +5,4 @@ Disallow: /checkout
 Disallow: /cart
 Disallow: /account/
 
-Sitemap: http://localhost/Ocean-Delight/public/sitemap.xml
+Sitemap: /sitemap.xml

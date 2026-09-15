@@ -7,13 +7,67 @@
     
     <title>@yield('title', 'Ocean Delight - Fresh Seafood Delivered in Karachi')</title>
     <meta name="description" content="@yield('meta_description', 'Ocean Delight delivers 100% fresh, wild-caught seafood direct to your door in Karachi. Cash on Delivery available across DHA, Clifton, Gulshan & more.')">
+    <meta name="keywords" content="Karachi seafood, fresh fish delivery Karachi, buy prawns online Karachi, Arabian sea fish, Surmai fish Karachi, Pomfret delivery Karachi, Cash on Delivery seafood">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <link rel="canonical" href="{{ url()->current() }}">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><path d='M9 20.5C10.5 14.5 15.5 9.5 25.5 7.5C24.5 13 21 18.5 14.5 21.5C12.5 22.5 10.2 22 9 20.5Z' fill='%2300A8CC'/><path d='M8.5 21C6 23.5 3.8 23 2.8 21.2C4.3 19.8 6 19 8 19.5L8.5 21Z' fill='%23D49B27'/><circle cx='22.5' cy='11.5' r='1.3' fill='%231E3E62'/></svg>">
+
     <!-- Open Graph Metadata -->
+    <meta property="og:site_name" content="Ocean Delight Fresh Seafood">
     <meta property="og:title" content="@yield('title', 'Ocean Delight - Fresh Seafood Delivered in Karachi')">
     <meta property="og:description" content="@yield('meta_description', 'Fresh seafood delivery in Karachi. Cash on Delivery.')">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="@yield('og_image', asset('images/products/default.jpg'))">
+    <meta property="og:image:alt" content="Ocean Delight Fresh Seafood Karachi">
+
+    <!-- Twitter Card Metadata -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@yield('title', 'Ocean Delight - Fresh Seafood Delivered in Karachi')">
+    <meta name="twitter:description" content="@yield('meta_description', 'Fresh seafood delivery in Karachi. Cash on Delivery.')">
+    <meta name="twitter:image" content="@yield('og_image', asset('images/products/default.jpg'))">
+
+    <!-- JSON-LD LocalBusiness & Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@type": "FishStore",
+      "name": "Ocean Delight Fresh Seafood",
+      "image": "{{ asset('images/products/default.jpg') }}",
+      "url": "{{ url('/') }}",
+      "telephone": "+923040313435",
+      "priceRange": "PKR 500 - PKR 15000",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Fishery Wharf, Dockyard Road",
+        "addressLocality": "Karachi",
+        "addressRegion": "Sindh",
+        "postalCode": "75600",
+        "addressCountry": "PK"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "24.8485",
+        "longitude": "66.9740"
+      },
+      "areaServed": [
+        "Karachi", "DHA Karachi", "Clifton Karachi", "Gulshan-e-Iqbal", "PECHS", "North Nazimabad", "Bahria Town Karachi"
+      ],
+      "paymentAccepted": "Cash on Delivery",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
+        ],
+        "opens": "06:00",
+        "closes": "22:00"
+      }
+    }
+    </script>
+
+    @yield('schema_json')
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">

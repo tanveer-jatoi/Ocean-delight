@@ -2,6 +2,38 @@
 
 @section('title', ($product->meta_title ?? $product->name . ' - Ocean Delight Karachi'))
 @section('meta_description', ($product->meta_description ?? 'Order fresh ' . $product->name . ' online in Karachi. Cash on delivery guaranteed.'))
+@section('og_image', asset($product->image ? $product->image : 'images/products/default.jpg'))
+
+@section('schema_json')
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org/",
+  "@type": "Product",
+  "name": "{{ e($product->name) }}",
+  "image": [
+    "{{ asset($product->image ? $product->image : 'images/products/default.jpg') }}"
+  ],
+  "description": "{{ e(strip_tags($product->short_description ?? $product->description)) }}",
+  "sku": "OD-{{ $product->id }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Ocean Delight"
+  },
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ url()->current() }}",
+    "priceCurrency": "PKR",
+    "price": "{{ $product->price }}",
+    "itemCondition": "https://schema.org/NewCondition",
+    "availability": "{{ $product->stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock' }}",
+    "seller": {
+      "@type": "Organization",
+      "name": "Ocean Delight Seafood"
+    }
+  }
+}
+</script>
+@endsection
 
 @section('content')
 

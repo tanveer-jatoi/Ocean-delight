@@ -1,13 +1,43 @@
 <header class="site-header">
     <div class="container">
         <nav class="navbar">
-            <a href="<?php echo e(route('home')); ?>" class="logo-brand">
-                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"></path>
-                    <path d="M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"></path>
-                    <path d="M12 10a2 2 0 100 4 2 2 0 000-4z"></path>
-                </svg>
-                Ocean <span>Delight</span>
+            <a href="<?php echo e(route('home')); ?>" class="logo-brand" aria-label="Ocean Delight Fresh Seafood">
+                <div class="logo-icon-wrapper">
+                    <svg class="seafood-logo-svg" width="38" height="38" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#00A8CC" />
+                                <stop offset="100%" stop-color="#1E3E62" />
+                            </linearGradient>
+                            <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="#F3C623" />
+                                <stop offset="100%" stop-color="#D49B27" />
+                            </linearGradient>
+                        </defs>
+                        <!-- Ocean Crest Ring -->
+                        <circle cx="18" cy="18" r="16.5" fill="url(#oceanGrad)" opacity="0.08"/>
+                        <circle cx="18" cy="18" r="15" stroke="url(#oceanGrad)" stroke-width="1.5" stroke-dasharray="4 2" opacity="0.35"/>
+                        <!-- Sleek Fish & Prawn Vector Silhouette -->
+                        <path d="M9 20.5C10.5 14.5 15.5 9.5 25.5 7.5C24.5 13 21 18.5 14.5 21.5C12.5 22.5 10.2 22 9 20.5Z" fill="url(#oceanGrad)"/>
+                        <!-- Prawn Fan Tail Fins -->
+                        <path d="M8.5 21C6 23.5 3.8 23 2.8 21.2C4.3 19.8 6 19 8 19.5L8.5 21Z" fill="url(#goldGrad)"/>
+                        <path d="M9 21.8C7 24.5 4.8 25.8 3.2 24.5C4.4 23 5.6 21.2 7.8 20.2L9 21.8Z" fill="url(#oceanGrad)"/>
+                        <path d="M9.8 22.4C8.2 25.8 6.2 27.5 4.5 26.8C5.5 24.8 6.5 22.8 8.4 21.2L9.8 22.4Z" fill="url(#goldGrad)"/>
+                        <!-- Prawn Whisker Curves -->
+                        <path d="M24 8.5C27.5 6 31 5.5 33 6.5" stroke="url(#goldGrad)" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M22.5 10.5C26.5 8.5 30 8.8 32 10.5" stroke="url(#oceanGrad)" stroke-width="1.4" stroke-linecap="round"/>
+                        <!-- Scale Details -->
+                        <path d="M18.5 13.5C17.5 15 17 17 17.5 19" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.7"/>
+                        <path d="M21 11.8C20 13.3 19.5 15.3 20 17.3" stroke="#FFFFFF" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+                        <!-- Eye -->
+                        <circle cx="22.5" cy="11.5" r="1.3" fill="#FFFFFF"/>
+                        <circle cx="22.7" cy="11.3" r="0.5" fill="#1E3E62"/>
+                    </svg>
+                </div>
+                <div class="logo-text-group">
+                    <span class="logo-text-main">Ocean <span class="logo-text-highlight">Delight</span></span>
+                    <span class="logo-text-sub">FRESH SEAFOOD</span>
+                </div>
             </a>
 
             <ul class="nav-menu" id="navMenu">
